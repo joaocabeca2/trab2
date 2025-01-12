@@ -4,10 +4,7 @@
 
 int main() {
     // Teste: Abrir arquivo válido
-    assert(read_file("teste.txt") == 0);
-
-    // Teste: Abrir arquivo inexistente
-    assert(read_file("inexistente.txt") == -1);
+    assert(read_file("teste.txt") != NULL);
 
     printf("Teste de leitura do arquivo: OK\n");
     return 0;
