@@ -1,6 +1,12 @@
 #ifndef CONTA_PALAVRAS_H
 #define CONTA_PALAVRAS_H
 
+// Definição da estrutura WordCount
+typedef struct {
+    char word[50]; 
+    int count;     
+} WordCount;
+
 char* read_file(const char *filename);
 
 // Conta o número de palavras em uma string
