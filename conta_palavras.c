@@ -41,3 +41,16 @@ int count_words(const char *text) {
     }
     return count; 
 }
+
+// Função para ordenar palavras em ordem alfabética
+void sort_words(WordCount words[], int num_words) {
+    for (int i = 0; i < num_words - 1; i++) {
+        for (int j = i + 1; j < num_words; j++) {
+            if (strcmp(words[i].word, words[j].word) > 0) {
+                WordCount temp = words[i];
+                words[i] = words[j];
+                words[j] = temp;
+            }
+        }
+    }
+}
