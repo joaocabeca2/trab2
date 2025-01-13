@@ -1,0 +1,3 @@
+*Para compilar o programa execute o seguinte comando: gcc conta_palavras.c -o conta_palavras
+*Para executar o arquivo gerado execute no terminal: ./conta_palavras
+
