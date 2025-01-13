@@ -1,15 +1,20 @@
 #include <stdio.h>
 #include <assert.h>
+#include <string.h>
 #include "conta_palavras.h"
 
+#define MAX_WORDS 1000 // Limite de palavras únicas
 int main() {
     // Teste: Abrir arquivo válido
-    assert(read_file("teste.txt") != NULL);
+    char *content = read_file("teste.txt");
+    assert(content != NULL);
 
     printf("Teste de leitura do arquivo: OK\n");
 
     // Testa a contagem de palavras no conteúdo lido
-    assert(count_words(read_file("teste.txt")) == 8);
+    WordCount words[MAX_WORDS];
+    int num_words = count_unique_words(content, words);
+    assert(num_words == 7);
 
     printf("Teste de contagem de palavras no arquivo: OK\n");
     return 0;

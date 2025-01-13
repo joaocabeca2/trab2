@@ -9,7 +9,7 @@ typedef struct {
 
 // Funções declaradas
 char* read_file(const char *filename);
-int count_words(const char *text);
+int count_unique_words(const char *text,  WordCount words[]);
 void sort_words(WordCount words[], int num_words);
 void print_word_counts(WordCount words[], int num_words);
 
