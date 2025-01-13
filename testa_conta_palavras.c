@@ -7,5 +7,10 @@ int main() {
     assert(read_file("teste.txt") != NULL);
 
     printf("Teste de leitura do arquivo: OK\n");
+
+    // Testa a contagem de palavras no conteúdo lido
+    assert(count_words(read_file("teste.txt")) == 8);
+
+    printf("Teste de calculo da quantidade palavras no arquivo: OK\n");
     return 0;
 }
