@@ -18,24 +18,63 @@ char* read_file(const char *filename) {
     return content; 
 }
 
-// Função para contar palavras em uma string
-int count_words(const char *text) {
+// Função para contar palavras únicas no texto
+int count_unique_words(const char *text, WordCount words[]) {
     if (text == NULL || strlen(text) == 0) {
         return 0; // Nenhuma palavra
     }
 
-    int count = 0;
-    int in_word = 0;
+    int num_words = 0;
+    char buffer[50]; // Buffer para armazenar palavras temporariamente
+    int index = 0;
 
     for (int i = 0; text[i] != '\0'; i++) {
         if (isspace(text[i])) {
-            in_word = 0; 
-        } else if (!in_word) {
-            in_word = 1; 
-            count++;
+            if (index > 0) {
+                buffer[index] = '\0';
+                index = 0;
+
+                // Verifica se a palavra já está no array
+                int found = 0;
+                for (int j = 0; j < num_words; j++) {
+                    if (strcmp(words[j].word, buffer) == 0) {
+                        words[j].count++;
+                        found = 1;
+                        break;
+                    }
+                }
+
+                // Se não foi encontrada, adiciona uma nova entrada
+                if (!found) {
+                    strcpy(words[num_words].word, buffer);
+                    words[num_words].count = 1;
+                    num_words++;
+                }
+            }
+        } else {
+            buffer[index++] = text[i];
         }
     }
-    return count; 
+
+    // Processa a última palavra, se existir
+    if (index > 0) {
+        buffer[index] = '\0';
+        int found = 0;
+        for (int j = 0; j < num_words; j++) {
+            if (strcmp(words[j].word, buffer) == 0) {
+                words[j].count++;
+                found = 1;
+                break;
+            }
+        }
+        if (!found) {
+            strcpy(words[num_words].word, buffer);
+            words[num_words].count = 1;
+            num_words++;
+        }
+    }
+
+    return num_words;
 }
 
 // Função para ordenar palavras em ordem alfabética
