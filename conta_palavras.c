@@ -96,3 +96,21 @@ void print_word_counts(WordCount words[], int num_words) {
         printf("%s: %d\n", words[i].word, words[i].count);
     }
 }
+
+// Função principal
+int main() {
+    char *content = read_file("teste.txt");
+    if (content == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        return 1;
+    }
+
+    WordCount words[1000];
+    int num_words = count_unique_words(content, words);
+
+    sort_words(words, num_words);
+
+    print_word_counts(words, num_words);
+
+    return 0;
+}
