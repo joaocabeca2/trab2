@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include "conta_palavras.h"
 
+
+// Estrutura para armazenar palavras e suas ocorrências
+typedef struct {
+    char word[50]; 
+    int count;   
+} WordCount;
+
 char* read_file(const char *filename) {
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
@@ -8,11 +15,11 @@ char* read_file(const char *filename) {
     }
 
     static char content[1024]; // Buffer fixo para armazenar o conteúdo
-    size_t n = fread(content, 1, sizeof(content) - 1, file); // Lê o arquivo
+    size_t n = fread(content, 1, sizeof(content) - 1, file);
     content[n] = '\0'; // Adiciona o terminador de string
 
     fclose(file);
-    return content; // Retorna o conteúdo lido
+    return content; 
 }
 
 // Conta o número de palavras em uma string
@@ -26,11 +33,11 @@ int count_words(const char *text) {
 
     for (int i = 0; text[i] != '\0'; i++) {
         if (isspace(text[i])) {
-            in_word = 0; // Fora de uma palavra
+            in_word = 0; 
         } else if (!in_word) {
-            in_word = 1; // Entrou em uma palavra
+            in_word = 1; 
             count++;
         }
     }
-    return count; // Retorna o número de palavras
+    return count; 
 }
