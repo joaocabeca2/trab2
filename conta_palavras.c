@@ -92,7 +92,5 @@ void sort_words(WordCount words[], int num_words) {
 
 // Função para imprimir palavras e suas contagens
 void print_word_counts(WordCount words[], int num_words) {
-    for (int i = 0; i < num_words; i++) {
-        printf("%s: %d\n", words[i].word, words[i].count);
-    }
+    
 }
