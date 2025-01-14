@@ -15,6 +15,10 @@ int main() {
     assert(strlen(content) != 0);
     printf("Teste de arquivo vazio: OK\n");
 
+    //Teste para verificar se há mais de um espaçamento
+    assert(contains_extra_spaces(content) == 0);
+    printf("Teste de espaçamento: OK\n");
+    
     // Testa a contagem de palavras no conteúdo lido
     WordCount words[MAX_WORDS];
     int num_words = count_unique_words(content, words);
