@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include <string.h>
+#include <stdbool.h>
 #include "conta_palavras.h"
 
 #define MAX_WORDS 1000 // Limite de palavras únicas
@@ -41,9 +42,15 @@ int main() {
     assert(strcmp(words[6].word, "utilizado") == 0);
     printf("Teste da ordenacao das palavras: OK\n");
 
+    //Testa para palavras repetidas na lista
+    assert(has_duplicates(words, num_words) == false);
+    printf("Teste de palavras repetidas: OK\n");
+
     // Testa a impressão (saída manual)
     printf("Resultado esperado para print_word_counts:\n");
     print_word_counts(words, num_words); 
+
+
 
     return 0;
 }
