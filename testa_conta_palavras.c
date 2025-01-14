@@ -7,9 +7,13 @@
 int main() {
     // Teste: Abrir arquivo válido
     char *content = read_file("teste.txt");
-    assert(content != NULL);
 
+    assert(content != NULL);
     printf("Teste de leitura do arquivo: OK\n");
+
+    //Teste arquivo vazio
+    assert(strlen(content) != 0);
+    printf("Teste de arquivo vazio: OK\n");
 
     // Testa a contagem de palavras no conteúdo lido
     WordCount words[MAX_WORDS];
