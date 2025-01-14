@@ -25,7 +25,7 @@ int main() {
 
     // Testa a impressão (saída manual)
     printf("Resultado esperado para print_word_counts:\n");
-    print_word_counts(words, num_words); // Imprime as palavras e ocorrências
+    print_word_counts(words, num_words); 
 
     return 0;
 }
