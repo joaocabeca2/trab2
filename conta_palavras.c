@@ -79,9 +79,13 @@ int count_unique_words(const char *text, WordCount words[]) {
 
 // Função para ordenar palavras em ordem alfabética
 void sort_words(WordCount words[], int num_words) {
+    char no_accents_i[50], no_accents_j[50];
     for (int i = 0; i < num_words - 1; i++) {
         for (int j = i + 1; j < num_words; j++) {
-            if (strcmp(words[i].word, words[j].word) > 0) {
+            // Remove os acentos das palavras antes de comparar
+            remove_accents(words[i].word, no_accents_i);
+            remove_accents(words[j].word, no_accents_j);
+            if (strcmp(no_accents_i, no_accents_j) > 0) {
                 WordCount temp = words[i];
                 words[i] = words[j];
                 words[j] = temp;
@@ -89,6 +93,7 @@ void sort_words(WordCount words[], int num_words) {
         }
     }
 }
+
 
 // Função para imprimir palavras e suas contagens
 void print_word_counts(WordCount words[], int num_words) {
@@ -128,4 +133,36 @@ int contains_extra_spaces(const char *text) {
     }
 
     return has_extra_spaces;
+}
+
+// Função para remover acentos de uma palavra
+void remove_accents(const char* input, char* output) {
+    int i = 0, j = 0;
+    while (input[i] != '\0') {
+        unsigned char c = input[i];
+        if (c >= 192 && c <= 255) { // Acentos comuns em caracteres UTF-8
+            if (c == 192 || c == 193 || c == 194 || c == 195 || c == 196 || c == 197 || c == 198) c = 'A';
+            else if (c == 199) c = 'C';
+            else if (c == 200 || c == 201 || c == 202 || c == 203) c = 'E';
+            else if (c == 204 || c == 205 || c == 206 || c == 207) c = 'I';
+            else if (c == 208) c = 'D';
+            else if (c == 209) c = 'N';
+            else if (c == 210 || c == 211 || c == 212 || c == 213 || c == 214 || c == 216) c = 'O';
+            else if (c == 217 || c == 218 || c == 219 || c == 220) c = 'U';
+            else if (c == 221 || c == 222) c = 'Y';
+            else if (c == 223) c = 's';
+            else if (c == 224 || c == 225 || c == 226 || c == 227 || c == 228 || c == 229 || c == 230) c = 'a';
+            else if (c == 231) c = 'c';
+            else if (c == 232 || c == 233 || c == 234 || c == 235) c = 'e';
+            else if (c == 236 || c == 237 || c == 238 || c == 239) c = 'i';
+            else if (c == 240) c = 'd';
+            else if (c == 241) c = 'n';
+            else if (c == 242 || c == 243 || c == 244 || c == 245 || c == 246 || c == 248) c = 'o';
+            else if (c == 249 || c == 250 || c == 251 || c == 252) c = 'u';
+            else if (c == 253 || c == 255) c = 'y';
+        }
+        output[j++] = c;
+        i++;
+    }
+    output[j] = '\0';
 }
