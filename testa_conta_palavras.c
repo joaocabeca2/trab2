@@ -7,6 +7,7 @@
 int main() {
     // Teste: Abrir arquivo válido
     char *content = read_file("teste.txt");
+    WordCount words[MAX_WORDS];
 
     assert(content != NULL);
     printf("Teste de leitura do arquivo: OK\n");
@@ -18,13 +19,16 @@ int main() {
     //Teste para verificar se há mais de um espaçamento
     assert(contains_extra_spaces(content) == 0);
     printf("Teste de espaçamento: OK\n");
-    
+
     // Testa a contagem de palavras no conteúdo lido
-    WordCount words[MAX_WORDS];
     int num_words = count_unique_words(content, words);
     assert(num_words == 7);
-
     printf("Teste de contagem de palavras no arquivo: OK\n");
+
+    // Teste 4: Texto vazio
+    num_words = count_unique_words(content, words);
+    assert(num_words != 0);
+    printf("Teste 4: Texto vazio: OK\n");
 
     // Testa a ordenação das palavras
     //assert(strcmp(words[0].word, "é") == 0); 
