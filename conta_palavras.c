@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdbool.h>
 #include "conta_palavras.h"
 
 // Função para ler o conteúdo de um arquivo
@@ -165,4 +166,18 @@ void remove_accents(const char* input, char* output) {
         i++;
     }
     output[j] = '\0';
+}
+
+#include <stdbool.h>
+
+// Função para verificar se há palavras repetidas no array
+bool has_duplicates(WordCount words[], int num_words) {
+    for (int i = 0; i < num_words - 1; i++) {
+        for (int j = i + 1; j < num_words; j++) {
+            if (strcmp(words[i].word, words[j].word) == 0) {
+                return true;
+            }
+        }
+    }
+    return false; // Nenhuma repetição encontrada
 }
