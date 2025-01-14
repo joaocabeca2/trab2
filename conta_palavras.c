@@ -97,20 +97,35 @@ void print_word_counts(WordCount words[], int num_words) {
     }
 }
 
-// Função principal
-int main() {
-    char *content = read_file("teste.txt");
-    if (content == NULL) {
-        printf("Erro ao abrir o arquivo.\n");
-        return 1;
+int contains_extra_spaces(const char *text) {
+    if (text == NULL) return 0; 
+
+    int has_extra_spaces = 0;
+    int in_space_sequence = 0; 
+    size_t length = strlen(text);
+
+    for (size_t i = 0; i < length; i++) {
+        if (text[i] == ' ') {
+            if (in_space_sequence) {
+                has_extra_spaces = 1; 
+                break;
+            }
+            in_space_sequence = 1; 
+        } else if (text[i] == '\n') {
+            if (i > 0 && text[i - 1] == ' ') {
+                has_extra_spaces = 1; 
+                break;
+            }
+            in_space_sequence = 0; 
+        } else {
+            in_space_sequence = 0; 
+        }
     }
 
-    WordCount words[1000];
-    int num_words = count_unique_words(content, words);
+    // Verifica se o texto termina com espaço
+    if (length > 0 && text[length - 1] == ' ') {
+        has_extra_spaces = 1;
+    }
 
-    sort_words(words, num_words);
-
-    print_word_counts(words, num_words);
-
-    return 0;
+    return has_extra_spaces;
 }

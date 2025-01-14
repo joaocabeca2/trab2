@@ -22,18 +22,24 @@ int main() {
 
     // Testa a contagem de palavras no conteúdo lido
     int num_words = count_unique_words(content, words);
+
     assert(num_words == 7);
     printf("Teste de contagem de palavras no arquivo: OK\n");
 
-    // Teste 4: Texto vazio
-    num_words = count_unique_words(content, words);
+    // Teste: Texto vazio
     assert(num_words != 0);
-    printf("Teste 4: Texto vazio: OK\n");
+    printf("Texto texto em branco: OK\n");
 
-    // Testa a ordenação das palavras
-    //assert(strcmp(words[0].word, "é") == 0); 
-    //assert(strcmp(words[1].word, "este") == 0);
-    //printf("Teste da ordenacao das palavras: OK\n");
+    //Testa a ordenação das palavras
+    sort_words(words, num_words);
+    assert(strcmp(words[0].word, "é") == 0); 
+    assert(strcmp(words[1].word, "Este") == 0);
+    assert(strcmp(words[2].word, "o") == 0);
+    assert(strcmp(words[3].word, "que") == 0);
+    assert(strcmp(words[4].word, "será") == 0);
+    assert(strcmp(words[5].word, "texto") == 0);
+    assert(strcmp(words[6].word, "utilizado") == 0);
+    printf("Teste da ordenacao das palavras: OK\n");
 
     // Testa a impressão (saída manual)
     printf("Resultado esperado para print_word_counts:\n");
